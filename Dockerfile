@@ -1,22 +1,9 @@
-# Use official Python image
+# Dockerfile
 FROM python:3.10-slim
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
-# Set working directory
 WORKDIR /app
+COPY app/ /app/
+RUN pip install flask
 
-# Install dependencies
-COPY app/requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy app code
-COPY app/ .
-
-# Expose the app port
 EXPOSE 5000
-
-# Run the app
 CMD ["python", "app.py"]
